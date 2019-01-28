@@ -55,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
         onOffButton=(Button) findViewById(R.id.onButton);
         refreshButton=(Button) findViewById(R.id.refreshButton);
 
+        //AppFirebaseMessagingService service=new AppFirebaseMessagingService();
+
         //ThingWorx zapomniał o o certyfikatach
         HttpsTrustManager.allowAllSSL();
         onOffButton.setOnClickListener(new View.OnClickListener() {
