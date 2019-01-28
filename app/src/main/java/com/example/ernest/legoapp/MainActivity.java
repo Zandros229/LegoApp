@@ -1,7 +1,11 @@
 package com.example.ernest.legoapp;
 
+import android.os.Handler;
+import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
@@ -30,8 +34,9 @@ public class MainActivity extends AppCompatActivity {
     CheckBox onlineCheckBox;
     CheckBox workingCheckBox;
     CheckBox invalidColorCheckBox;
-
-
+    Button onOffButton;
+    Button refreshButton;
+    Handler timer=new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,16 +52,59 @@ public class MainActivity extends AppCompatActivity {
         onlineCheckBox=(CheckBox) findViewById(R.id.checkBoxOnline);
         workingCheckBox=(CheckBox) findViewById(R.id.checkBoxWorking);
         invalidColorCheckBox=(CheckBox) findViewById(R.id.checkBoxinvalidColor);
-
+        onOffButton=(Button) findViewById(R.id.onButton);
+        refreshButton=(Button) findViewById(R.id.refreshButton);
 
         //ThingWorx zapomniał o o certyfikatach
         HttpsTrustManager.allowAllSSL();
+        onOffButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                turnItOnOff();
+            }
+        });
 
+        refreshButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                counter();
+            }
+        });
         counter();
-        //redCounter();
-        //greenCounter();
-        //blueCounter();
+
+
     }
+
+    public void turnItOnOff (){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                URL url = null;
+                try {
+                    url = new URL("https://pp-1901081737n9.devportal.ptc.io/Thingworx/Things/Production/Services/changeIsWorkingFlag?appKey=ee20eacc-cf68-4770-866f-ea40846f25e5");
+                    httpURLConnection = (HttpURLConnection) url.openConnection();
+                    httpURLConnection.setRequestMethod("POST");
+                    //httpURLConnection.setRequestProperty("Key","Value");
+                    //httpURLConnection.addRequestProperty("Content-Type", "application/json");
+                    //httpURLConnection.addRequestProperty("Accept", "application/json");
+                    httpURLConnection.setDoOutput(true);
+                    httpURLConnection.connect();
+                    OutputStreamWriter outputStreamWriter = new OutputStreamWriter(httpURLConnection.getOutputStream());
+                    outputStreamWriter.write("");
+                    outputStreamWriter.flush();
+
+                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
+
+                    System.out.println("zmiana flagi");
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+    }
+
     public int toNumeric(String napis) {
         String value = napis;
         String intValue = value.replaceAll("[^0-9]", "");
@@ -143,7 +191,7 @@ public class MainActivity extends AppCompatActivity {
                     tab = result.split("<TD>", 2);
                     //char counter=tab[1].charAt(0);
                     final int counter = toNumeric(tab[1]);
-                    System.out.println(counter + "XDDDDDDDDD");
+
                     runOnUiThread(new Runnable() {
 
                         @Override
@@ -253,7 +301,6 @@ public class MainActivity extends AppCompatActivity {
                     tab = result.split("<TD>", 2);
                     //char counter=tab[1].charAt(0);
                     final int counter = toNumeric(tab[1]);
-                    System.out.println(counter);
                     runOnUiThread(new Runnable() {
 
                         @Override
@@ -402,155 +449,4 @@ public class MainActivity extends AppCompatActivity {
         }).start();
     }
 
-    private void redCounter() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-
-                URL url = null;
-                try {
-                    url = new URL("https://pp-1901081737n9.devportal.ptc.io/Thingworx/Things/Production/Properties/redCounter?appKey=ee20eacc-cf68-4770-866f-ea40846f25e5");
-                    httpURLConnection = (HttpURLConnection) url.openConnection();
-                    httpURLConnection.setRequestMethod("GET");
-                    //httpURLConnection.addRequestProperty("Content-Type", "application/json");
-                    //httpURLConnection.addRequestProperty("Accept", "application/json");
-                    //httpURLConnection.setDoOutput(true);
-                    //httpURLConnection.connect();
-                    //OutputStreamWriter outputStreamWriter = new OutputStreamWriter(httpURLConnection.getOutputStream());
-                    //outputStreamWriter.write("");
-                    ///outputStreamWriter.flush();
-
-
-                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
-                    String inputLine;
-                    StringBuffer stringBuffer = new StringBuffer();
-                    while ((inputLine = bufferedReader.readLine()) != null) {
-                        stringBuffer.append(inputLine);
-                    }
-                    String result = stringBuffer.toString();
-
-
-                    //counterValue.setText(result);
-                    String[] tab = new String[2];
-                    tab = result.split("<TD>", 2);
-                    //char counter=tab[1].charAt(0);
-                    final int counter = toNumeric(tab[1]);
-                    System.out.println(counter+"XDDDDDDDDD");
-                    runOnUiThread(new Runnable() {
-
-                        @Override
-                        public void run() {
-                            redcounterView.setText(String.valueOf(counter));
-                        }
-                    });
-                    //outputStreamWriter.close();
-                    bufferedReader.close();
-
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-            }
-        }).start();
-    }
-
-    private void greenCounter() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-
-                URL url = null;
-                try {
-                    url = new URL("https://pp-1901081737n9.devportal.ptc.io/Thingworx/Things/Production/Properties/greenCounter?appKey=ee20eacc-cf68-4770-866f-ea40846f25e5");
-                    httpURLConnection = (HttpURLConnection) url.openConnection();
-                    httpURLConnection.setRequestMethod("GET");
-                    //httpURLConnection.addRequestProperty("Content-Type", "application/json");
-                    //httpURLConnection.addRequestProperty("Accept", "application/json");
-                    //httpURLConnection.setDoOutput(true);
-                   // httpURLConnection.connect();
-
-
-
-                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
-                    String inputLine;
-                    StringBuffer stringBuffer = new StringBuffer();
-                    while ((inputLine = bufferedReader.readLine()) != null) {
-                        stringBuffer.append(inputLine);
-                    }
-                    String result = stringBuffer.toString();
-
-
-                    //counterValue.setText(result);
-                    String[] tab = new String[2];
-                    tab = result.split("<TD>", 2);
-                    //char counter=tab[1].charAt(0);
-                    final int counter = toNumeric(tab[1]);
-                    runOnUiThread(new Runnable() {
-
-                        @Override
-                        public void run() {
-                            greecounterView.setText(String.valueOf(counter));
-                        }
-                    });
-                    bufferedReader.close();
-
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-
-            }
-        }).start();
-    }
-/*
-    private void blueCounter() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-
-                URL url = null;
-                try {
-                    url = new URL("https://pp-1901081737n9.devportal.ptc.io/Thingworx/Things/Production/Properties/blueCounter?appKey=ee20eacc-cf68-4770-866f-ea40846f25e5");
-                    httpURLConnection = (HttpURLConnection) url.openConnection();
-                    httpURLConnection.setRequestMethod("GET");
-                    //httpURLConnection.addRequestProperty("Content-Type", "application/json");
-                    //httpURLConnection.addRequestProperty("Accept", "application/json");
-                    //httpURLConnection.setDoOutput(true);
-                    //httpURLConnection.connect();
-
-
-                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
-                    String inputLine;
-                    StringBuffer stringBuffer = new StringBuffer();
-                    while ((inputLine = bufferedReader.readLine()) != null) {
-                        stringBuffer.append(inputLine);
-                    }
-                    String result = stringBuffer.toString();
-
-
-                    //counterValue.setText(result);
-                    String[] tab = new String[2];
-                    tab = result.split("<TD>", 2);
-                    //char counter=tab[1].charAt(0);
-                    final int counter = toNumeric(tab[1]);
-                    runOnUiThread(new Runnable() {
-
-                        @Override
-                        public void run() {
-                            bluecounterView.setText(String.valueOf(counter));
-                        }
-                    });
-
-                    bufferedReader.close();
-
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-            }
-        }).start();
-    }*/
 }

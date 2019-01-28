@@ -54,4 +54,9 @@ dependencies {
     implementation files('libs/thingworx-common-development.server.build-b679.jar')
     implementation files('libs/thingworx-communications-client-development.server.build-b679.jar')
     implementation files('libs/thingworx-java-sdk-development.server.build-b679-javadoc.jar')
+    implementation 'com.google.firebase:firebase-core:16.0.6'
+    implementation 'com.google.firebase:firebase-storage:16.0.5'
+    implementation 'com.google.firebase:firebase-auth:16.1.0'
+    implementation 'com.google.firebase:firebase-database:16.0.5'
+    implementation 'com.google.firebase:firebase-messaging:17.3.4'
 }

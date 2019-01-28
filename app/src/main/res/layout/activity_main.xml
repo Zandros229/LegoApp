@@ -10,42 +10,37 @@
     <TextView
         android:id="@+id/armState"
         android:layout_width="0dp"
-        android:layout_height="34dp"
-        android:layout_marginEnd="5dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginBottom="282dp"
         android:text="0"
         android:textColor="@android:color/black"
         android:textSize="18sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/View"
+        app:layout_constraintBottom_toTopOf="@+id/refreshButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/View" />
+        app:layout_constraintStart_toEndOf="@+id/View"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <TextView
         android:id="@+id/textView6"
-        android:layout_width="0dp"
-        android:layout_height="34dp"
+        android:layout_width="75dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginBottom="1dp"
         android:text="Red"
         android:textColor="@android:color/black"
         android:textSize="18sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/redView"
+        app:layout_constraintBottom_toTopOf="@+id/blueView"
         app:layout_constraintEnd_toStartOf="@+id/redView"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <TextView
         android:id="@+id/text"
-        android:layout_width="0dp"
+        android:layout_width="75dp"
         android:layout_height="34dp"
         android:text="Green"
-        android:textColor="@android:color/black"
-        android:textSize="18sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/greenView"
-        app:layout_constraintEnd_toStartOf="@+id/greenView"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="0dp"
-        android:layout_height="34dp"
-        android:text="Blue"
         android:textColor="@android:color/black"
         android:textSize="18sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/blueView"
@@ -53,8 +48,21 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
+        android:id="@+id/textView8"
+        android:layout_width="73dp"
+        android:layout_height="34dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="3dp"
+        android:text="Blue"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/greenView"
+        app:layout_constraintEnd_toStartOf="@+id/greenView"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
         android:id="@+id/textView"
-        android:layout_width="0dp"
+        android:layout_width="77dp"
         android:layout_height="34dp"
         android:text="Counter"
         android:textColor="@android:color/black"
@@ -66,21 +74,19 @@
     <TextView
         android:id="@+id/View"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="399dp"
+        android:layout_height="45dp"
         android:text="State"
         android:textColor="@android:color/black"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBaseline_toBaselineOf="@+id/armState"
         app:layout_constraintEnd_toStartOf="@+id/armState"
-        app:layout_constraintStart_toEndOf="@+id/counterView"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintStart_toEndOf="@+id/counterView" />
 
     <TextView
         android:id="@+id/counterView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginEnd="55dp"
+        android:layout_marginEnd="129dp"
         android:text="0"
         android:textColor="@android:color/black"
         android:textSize="18sp"
@@ -93,11 +99,11 @@
         android:id="@+id/redView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginEnd="222dp"
+        android:layout_marginEnd="250dp"
         android:text="0"
         android:textColor="@android:color/black"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/greenView"
+        app:layout_constraintBottom_toTopOf="@+id/blueView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView6"
         app:layout_constraintTop_toBottomOf="@+id/counterView" />
@@ -106,28 +112,28 @@
         android:id="@+id/greenView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginEnd="222dp"
-        android:text="0"
-        android:textColor="@android:color/black"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/blueView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/text"
-        app:layout_constraintTop_toBottomOf="@+id/redView" />
-
-    <TextView
-        android:id="@+id/blueView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginEnd="222dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginEnd="250dp"
+        android:layout_marginBottom="57dp"
         android:text="0"
         android:textColor="@android:color/black"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/checkBoxOnline"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView8"
-        app:layout_constraintTop_toBottomOf="@+id/greenView" />
+        app:layout_constraintTop_toBottomOf="@+id/blueView" />
+
+    <TextView
+        android:id="@+id/blueView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="244dp"
+        android:text="0"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/greenView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/text"
+        app:layout_constraintTop_toBottomOf="@+id/redView" />
 
     <CheckBox
         android:id="@+id/checkBoxOnline"
@@ -136,7 +142,7 @@
         android:text="isOnline"
         app:layout_constraintBottom_toTopOf="@+id/checkBoxWorking"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/blueView" />
+        app:layout_constraintTop_toBottomOf="@+id/greenView" />
 
     <CheckBox
         android:id="@+id/checkBoxWorking"
@@ -151,9 +157,9 @@
         android:id="@+id/checkBoxinvalidColor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="177dp"
+        android:layout_marginBottom="31dp"
         android:text="invalidColorFlag"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/onButton"
         app:layout_constraintStart_toStartOf="@+id/checkBoxWorking"
         app:layout_constraintTop_toBottomOf="@+id/checkBoxWorking" />
 
@@ -177,13 +183,37 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="31dp"
-        android:layout_marginBottom="17dp"
         android:text="Arm"
         android:textColor="@android:color/black"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/View"
+        app:layout_constraintBottom_toTopOf="@+id/armState"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView3"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/onButton"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="87dp"
+        android:layout_marginBottom="66dp"
+        android:background="@color/colorPrimary"
+        android:text="On/Off"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/refreshButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkBoxinvalidColor" />
+
+    <Button
+        android:id="@+id/refreshButton"
+        android:layout_width="0dp"
+        android:layout_height="44dp"
+        android:layout_marginBottom="66dp"
+        android:background="@color/colorPrimary"
+        android:text="Refresh"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/onButton"
+        app:layout_constraintTop_toBottomOf="@+id/armState" />
 
 </android.support.constraint.ConstraintLayout>
